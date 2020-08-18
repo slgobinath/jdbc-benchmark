@@ -1,0 +1,17 @@
+connections:
+  presto:
+    url: jdbc:presto://localhost:8080
+    username: root
+    password:
+  mysql:
+    url: jdbc:mysql://localhost:1366
+    username: root
+    password: root
+
+tests:
+  testCompare:
+    type: compare
+    count: 1
+    queries:
+      - {connection: presto, script: presto/tpcds/01.sql, print_output: true}
+      - {connection: mysql, schema: tpcds.web_sales, script: mysql/tpcds/01.sql, print_output: true}
